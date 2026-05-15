@@ -28,7 +28,7 @@ fn main() {
         else if command.starts_with("type"){
             let builtin = &command[5..];
             if  BUILT_IN_COMMANDS.contains(&builtin) {
-                println!("{} is a shell builtin", command);
+                println!("{} is a shell builtin", builtin);
             }
             else {
                 println!("{}: command not found", command);
