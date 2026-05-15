@@ -17,10 +17,14 @@ fn main() {
         io::stdout().flush().unwrap();
         let mut command = String::new();
         io::stdin().read_line(&mut command).unwrap();
-        if command.trim().eq_ignore_ascii_case("exit"){
+        if command.trim().eq("exit"){
             break;
         }
-        println!("{}: command not found", command.trim());
+        if command.trim().starts_with("echo"){
+            print!("{}", &command[5..])
+        }else{
+            println!("{}: command not found", command.trim());
+        }
     }
 
 }
