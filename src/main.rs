@@ -68,11 +68,11 @@ fn main() {
                 // }
             }
             if !flag{
-                println!("{}: command not found", builtin);
+                println!("{}: not found", builtin);
             }
         }
         else{
-            println!("{}: command not found", command);
+            println!("{}: not found", command);
         }
     }
 
