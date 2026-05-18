@@ -56,6 +56,10 @@ fn main() {
                 if flag{
                     break;
                 }
+                else {
+                    println!("{}: command not found", builtin);
+                    break;
+                }
                 // if let Ok(entries) = fs::read_dir(directory) {
                 //     for entry in entries.flatten() {
                 //         if let Ok(file_name) = entry.file_name().into_string() {
