@@ -34,6 +34,7 @@ fn main() {
                 println!("{} is a shell builtin", builtin);
             }
             for directory in &paths_list {
+                let mut flag = false;
                 match fs::read_dir(directory) {
                     Ok(entries) => {
                         for entry in entries.flatten(){
@@ -41,9 +42,9 @@ fn main() {
                                 if file_name == builtin{
                                     if fs::metadata(directory.join(&file_name)).map(|m| m.permissions().mode() & 0o111 !=0).unwrap_or(false){
                                         println!("{} is {}", builtin, directory.join(file_name).display());
+                                        flag = true;
                                         break;
                                     }
-                                    
                                 }
                             }
                         }
@@ -51,6 +52,9 @@ fn main() {
                     Err(_e) =>{
                         //println!("{}: not found in {}", builtin, directory.display());
                     }
+                }
+                if flag{
+                    break;
                 }
                 // if let Ok(entries) = fs::read_dir(directory) {
                 //     for entry in entries.flatten() {
