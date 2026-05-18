@@ -32,6 +32,7 @@ fn main() {
             let builtin = &command[5..];
             if  BUILT_IN_COMMANDS.contains(&builtin) {
                 println!("{} is a shell builtin", builtin);
+                continue;
             }
             let mut flag = false;
             for directory in &paths_list {
