@@ -33,8 +33,8 @@ fn main() {
             if  BUILT_IN_COMMANDS.contains(&builtin) {
                 println!("{} is a shell builtin", builtin);
             }
+            let mut flag = false;
             for directory in &paths_list {
-                let mut flag = false;
                 match fs::read_dir(directory) {
                     Ok(entries) => {
                         for entry in entries.flatten(){
@@ -56,10 +56,6 @@ fn main() {
                 if flag{
                     break;
                 }
-                else {
-                    println!("{}: command not found", builtin);
-                    break;
-                }
                 // if let Ok(entries) = fs::read_dir(directory) {
                 //     for entry in entries.flatten() {
                 //         if let Ok(file_name) = entry.file_name().into_string() {
@@ -70,6 +66,9 @@ fn main() {
                 //         }
                 //     }
                 // }
+            }
+            if !flag{
+                println!("{}: command not found", builtin);
             }
         }
         else{
